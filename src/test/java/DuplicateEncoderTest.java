@@ -16,4 +16,13 @@ public class DuplicateEncoderTest {
        assertEquals("))))())))",DuplicateEncoder.encode("   ()(   "));
 
     }
+    @Test
+    public void test2() {
+        assertEquals(")()())()(()()(",
+                DuplicateEncoderNotMine.encode("Prespecialized"));
+        assertEquals("))((",DuplicateEncoderNotMine.encode("(( @"));
+        assertEquals("))))())))",DuplicateEncoderNotMine.encode("   ()(   "));
+        assertEquals(")))(((",DuplicateEncoderNotMine.encode("YYYlib"));
+
+    }
 }

@@ -13,29 +13,20 @@ public class DuplicateEncoder {
 
             if (buffer.indexOf(buffer.charAt(i), i + 1) != -1) {
                 howManyMap.put(String.valueOf(buffer.charAt(i)), true);
-                if (buffer.charAt(i) == '(' || buffer.charAt(i) == ')' || buffer.charAt(i) == '{' || buffer.charAt(i) == '}') {
-                    buffer = buffer.replace(String.valueOf(buffer.charAt(i)), "");
-                } else {
-                    buffer = buffer.replaceAll(String.valueOf(buffer.charAt(i)), "");
-                }
+
             } else {
 
                 howManyMap.put(String.valueOf(buffer.charAt(i)), false);
-                if (buffer.charAt(i) == '(' || buffer.charAt(i) == ')' || buffer.charAt(i) == '{' || buffer.charAt(i) == '}') {
-                    buffer = buffer.replace(String.valueOf(buffer.charAt(i)), "");
-                } else {
-                    buffer = buffer.replaceAll(String.valueOf(buffer.charAt(i)), "");
-                }
-
             }
+            buffer = buffer.replace(String.valueOf(buffer.charAt(i)), "");
 
         }
+        System.out.println(howManyMap);
 
         for (int i = 0; i < arr.length; i++) {
             if (howManyMap.get(String.valueOf(arr[i]))) {
                 arr[i] = ')';
             } else arr[i] = '(';
-
         }
         String result = new String(arr);
 
