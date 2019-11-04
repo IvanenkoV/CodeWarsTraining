@@ -1,25 +1,23 @@
-import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class PigLatin {
     public static String pigIt(String str) {
-        // Write code here
-        System.out.println(str);
+
         String resultString = "";
-        String[] stringArray = str.split(" ");;
+        String[] stringArray = str.split(" ");
+        ;
         for (int i = 0; i < stringArray.length; i++) {
-            if (stringArray[i].startsWith("!"))   {resultString += stringArray[i]; continue;}
-            if (stringArray[i] != "[^\\s\\w]")
-                stringArray[i] = stringArray[i].substring(1) + stringArray[i].charAt(0) + "ay ";
-            System.out.println(stringArray[i]);
+
+            // if punctuation
+            if (Pattern.matches("\\p{Punct}", stringArray[i])) {
+                resultString += stringArray[i] + " ";
+                continue;
+            } else stringArray[i] = stringArray[i].substring(1) + stringArray[i].charAt(0) + "ay ";
 
             resultString += stringArray[i];
-            if (i == stringArray.length -1) resultString = resultString.substring(0, resultString.length() -1);
-        }
-        System.out.println(Arrays.toString(stringArray));
-        System.out.println(resultString);
 
+        }
+        resultString = resultString.substring(0, resultString.length() - 1);
         return resultString;
     }
 }
-//stringArray[i] != "." && stringArray[i] != "," && stringArray[i] != "!" && stringArray[i] != "-"
-//        && stringArray[i] != "[" && stringArray[i] != "]" && stringArray[i] != "{" && stringArray[i] != "}" &&
